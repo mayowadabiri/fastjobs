@@ -14,6 +14,9 @@ import ProtectedRoute from '@/HOC/ProtectedRoute';
 import { useGetData } from '@/query';
 import UsersTable from '@/components/Table';
 import { Person } from '@/types';
+import Drodown from '@/public/svg/dropdown.icon.svg';
+import Image from 'next/image';
+import Memo from '@/assets/Memo.png';
 
 const columnHelper = createColumnHelper<Person>();
 
@@ -69,9 +72,12 @@ const Table = () => {
     <ProtectedRoute>
       <div className="w-full">
         <div className="p-20  w-11/12">
-          <p className="font-semibold text-dark heading underline">
-            Graphic Designer
-          </p>
+          <div className="flex">
+            <p className="font-semibold text-dark heading underline">
+              Graphic Designer
+            </p>
+            <Image src={Memo} alt="memo" />
+          </div>
           <div className="flex mt-16 items-center">
             <p className="flex items-center space-x-4 mr-12">
               <TableLogo />{' '}
@@ -85,13 +91,23 @@ const Table = () => {
               <SearchLogo />
               <input
                 className="text-lg w-full p-2 focus:outline-none"
-                placeholder="Type to search"
+                placeholder="Type to search..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
+            <button className="bg-[#6776FF] rounded-[4px] flex space-x-3 items-center">
+              <span className="text-base text-white border-r border-r-white py-2 px-3">
+                New
+              </span>
+              <div className="pr-3">
+                <Drodown />
+              </div>
+            </button>
           </div>
-          {data.length ? <UsersTable table={table} /> : null}
+          <div className="mt-3">
+            {data.length ? <UsersTable table={table} /> : null}
+          </div>
         </div>
       </div>
     </ProtectedRoute>
