@@ -1,4 +1,5 @@
 import { getData, getUser, login } from '@/apis';
+import { useBearStore } from '@/state';
 import { LoginForm, Person } from '@/types';
 import { useRouter } from 'next/router';
 import { UseQueryResult, useMutation, useQuery } from 'react-query';
@@ -20,8 +21,12 @@ export const useLogin = () => {
 };
 
 export const useMe = () => {
+  const updateUser = useBearStore((state) => state.updateUser);
   const router = useRouter();
   return useQuery(['me'], () => getUser(), {
+    onSuccess: (data) => {
+      updateUser(data);
+    },
     onError: () => {
       router.push('/login');
     },
