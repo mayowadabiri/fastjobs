@@ -15,7 +15,10 @@ const Content = () => {
         <p className="typo">Skills being assessed:</p>
         <div className="flex space-x-2 mt-1 mb-5">
           {skills.map((item: string) => (
-            <p className="w-fit border rounded-[50px] p-3 border-white text-white">
+            <p
+              className="w-fit border rounded-[50px] p-3 border-white text-white"
+              key={item}
+            >
               {item}
             </p>
           ))}

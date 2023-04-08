@@ -15,6 +15,7 @@ const UsersTable = ({ table }: { table: Table<Person> }) => {
                     : ' text-left py-2',
                   onClick: header.column.getToggleSortingHandler(),
                 }}
+                key={header.column.id}
               >
                 {flexRender(
                   header.column.columnDef.header,
