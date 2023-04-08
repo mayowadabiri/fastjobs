@@ -29,16 +29,14 @@ const columns = [
   }),
   columnHelper.accessor('gender', {
     header: () => <span className={className}>Gender</span>,
-    enableSorting: false,
   }),
   columnHelper.accessor('email', {
     header: () => <span className={className}>@ Email</span>,
-    enableSorting: false,
   }),
 ];
 
 const Table = () => {
-  const { data: mydata, isLoading } = useGetData();
+  const { data: mydata } = useGetData();
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const [data, setData] = useState(mydata || []);
@@ -93,7 +91,7 @@ const Table = () => {
               />
             </div>
           </div>
-          {data.length && <UsersTable table={table} />}
+          {data.length ? <UsersTable table={table} /> : null}
         </div>
       </div>
     </ProtectedRoute>
